@@ -23,6 +23,7 @@ The following patterns are not considered warnings:
 ```js
 "react/jsx-no-bind": [<enabled>, {
   "ignoreRefs": <boolean> || false,
+  "ignoreDOMComponents": <boolean> || false,
   "allowArrowFunctions": <boolean> || false,
   "allowBind": <boolean> || false
 }]
@@ -35,6 +36,15 @@ When `true` the following are not considered warnings:
 ```jsx
 <div ref={c => this._div = c} />
 <div ref={this._refCallback.bind(this)} />
+```
+
+### `ignoreDOMComponents`
+
+When `true` the following are not considered warnings:
+
+```jsx
+<div onClick={() => this.onClick(foo, bar)} />
+<div onClick={this.onClick.bind(this, foo, bar)} />
 ```
 
 ### `allowArrowFunctions`

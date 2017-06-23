@@ -115,6 +115,18 @@ ruleTester.run('jsx-no-bind', rule, {
         '};'
       ].join('\n'),
       parser: 'babel-eslint'
+    },
+
+    // bind() and arrow functions in DOMComponents explicitly ignored
+    {
+      code: '<div onClick={() => this.onClick(this, name, selected)}></div>',
+      options: [{ignoreDOMComponents: true}],
+      parser: 'babel-eslint'
+    },
+    {
+      code: '<foo.div onClick={this.onClick.bind(this, name, selected)}></foo.div>',
+      options: [{ignoreDOMComponents: true}],
+      parser: 'babel-eslint'
     }
   ],
 
